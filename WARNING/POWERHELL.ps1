@@ -22,7 +22,7 @@ $hacker_text = @("Injecting rootkit...", "Executing backdoor command...", "Erasi
 $messages = @("System lockdown in progress...", "You are no longer in control.", "I am watching you.", "Unauthorized access detected.", "This computer is now mine.")
 
 while ($true) {
-    Start-Sleep -Seconds (Get-Random -Minimum 1 -Maximum 5)
+    Start-Sleep -Milliseconds (Get-Random -Minimum 300 -Maximum 1200)  # Reduced delay for speed boost
 
     $random = Get-Random -Minimum 1 -Maximum 20
     switch ($random) {
