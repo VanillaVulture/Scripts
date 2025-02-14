@@ -6,3 +6,5 @@ The warning level goes (Safe at top, Chaos at bottom)
 2. BorderLineVirus.ps1
 3. 🔥 THE MOST INSANE, CHAOTIC, AND UNPREDICTABLE POWERSHELL PRANK IN EXISTENCE 🔥
 4. POWERHELL
+5. PC Cooker
+6. 💀 THE ABSOLUTE PC-KILLER SCRIPT 💀.ps1
