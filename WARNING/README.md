@@ -2,7 +2,7 @@
 
 The warning level goes (Safe at top, Chaos at bottom)
 -----------------------
-THE_BIG_ONE.ps1
-BorderLineVirus.ps1
-🔥 THE MOST INSANE, CHAOTIC, AND UNPREDICTABLE POWERSHELL PRANK IN EXISTENCE 🔥
-POWERHELL
+1. THE_BIG_ONE.ps1
+2. BorderLineVirus.ps1
+3. 🔥 THE MOST INSANE, CHAOTIC, AND UNPREDICTABLE POWERSHELL PRANK IN EXISTENCE 🔥
+4. POWERHELL
