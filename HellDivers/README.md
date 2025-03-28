@@ -1,9 +1,9 @@
 Command prompt to make the "BigFile" in your drive
 fsutil file createnew BigFile.txt #
 --------------------------------------------------------------
-## Storage Size Reference (Bytes)
-Replace # with
-- Here is a list of common storage sizes in bytes, formatted for use in `cmd`:
+## Storage Size Reference (Bytes) Replace # with desired size
+
+Here is a list of common storage sizes in bytes, formatted for use in `cmd`:
 
 - **1 KB**  = `1024` bytes  
 - **1 MB**  = `1048576` bytes  
